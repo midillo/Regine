@@ -7,10 +7,10 @@ public class TestRegine {
 	public static void main(String args[]) {
 	 Regine r = new Regine();
 	
-	 List<Integer> soluzione;
+	 List<List<Integer>> soluzioni;
 	
-	 soluzione = r.risolvi(8);
-	 System.out.println(soluzione);
+	 soluzioni = r.risolvi(8);
+	 System.out.println(soluzioni);
 	
 	}
 

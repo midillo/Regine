@@ -18,23 +18,22 @@ public class Regine {
 	//     [0, 2]
 	//            [0, 2, 1]
 	int N;
-	private List<Integer> soluzione;	
+	private List<List<Integer>> soluzioni;	
 	
-	public List<Integer> risolvi(int N){
+	public List<List<Integer>> risolvi(int N){
 		this.N=N;
-		List<Integer> soluzione = new ArrayList<Integer>();
-		this.soluzione=null;
+		List<Integer> parziale = new ArrayList<Integer>();
+		this.soluzioni= new ArrayList<>();
 	
-		cerca(soluzione, 0);
-		return this.soluzione;
+		cerca(parziale, 0);
+		return this.soluzioni;
 	}
 	
 	//cerca == true : trovato; cerca == false : cerca ancora
-	private boolean cerca(List<Integer>parziale, int livello) {
+	private void cerca(List<Integer>parziale, int livello) {
 		if(livello==N) {
-			System.out.println(parziale);
-			this.soluzione = new ArrayList<>(parziale);
-			return true;
+		//	System.out.println(parziale);
+			this.soluzioni.add(new ArrayList<>(parziale));
 		} else {
 			for(int colonna=0; colonna<N; colonna++) {
 				//if la mossa nella cartella [livello][colonna] è valida
@@ -42,13 +41,11 @@ public class Regine {
 				
 				if(posValida(parziale, colonna)) {
 					parziale.add(colonna);
-					boolean trovato = cerca(parziale, livello+1);
-					if(trovato)
-						return true;
+					cerca(parziale, livello+1);
+					
 					parziale.remove(parziale.size()-1); //backtracking
 				}
 			}
-			return false;
 		}
 	}
 	
